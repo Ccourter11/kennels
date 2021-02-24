@@ -1,7 +1,13 @@
+// My Main App Component
+
+
 import React from "react"
 import { AnimalCard } from "./animal/AnimalCard"
 import "./animal/Animal.css"
 
+
+// Functional Component
+// the single line is whatever gets returned in the parenthesis
 export const Kennel = () => (
     <>
         <h2>Nashville Kennels</h2>
