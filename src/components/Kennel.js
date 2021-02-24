@@ -4,7 +4,10 @@
 import React from "react"
 import { AnimalCard } from "./animal/AnimalCard"
 import "./animal/Animal.css"
-
+import { CustomerCard } from "./customer/CustomerCard";
+import "./customer/Customer.css"
+import { EmployeeCard } from "./employee/EmployeeCard";
+import "./employee/EmployeeCard";
 
 // Functional Component
 // the single line is whatever gets returned in the parenthesis
@@ -23,6 +26,26 @@ export const Kennel = () => (
             <AnimalCard />
             <AnimalCard />
             <AnimalCard />
+        </article>
+    </>
+)
+
+export const Customer = () => (
+    <>
+        
+        <h2>Customers</h2>
+        <article className="customers">
+            <CustomerCard />
+        </article>
+    </>
+)
+
+export const Employee = () => (
+    <>
+        
+        <h2>Employee</h2>
+        <article className="employees">
+            <EmployeeCard />
         </article>
     </>
 )
