@@ -2,10 +2,14 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { Kennel } from "./components/Kennel"
 import { reportWebVitals } from "./reportWebVitals"
+import { CustomerCard } from "./components/customer/CustomerCard"
+import { EmployeeCard } from "./components/employee/EmployeeCard";
 
 ReactDOM.render(
   <React.StrictMode>
     <Kennel />
+    <CustomerCard />
+    <EmployeeCard />
   </React.StrictMode>,
   document.getElementById('root')
 );
