@@ -8,6 +8,8 @@ import { CustomerCard } from "./customer/CustomerCard";
 import "./customer/Customer.css"
 import { EmployeeCard } from "./employee/EmployeeCard";
 import "./employee/EmployeeCard";
+import { PropsAndState } from "./PropsAndState";
+import "./PropsAndState"
 
 // Functional Component
 // the single line is whatever gets returned in the parenthesis
@@ -59,6 +61,12 @@ import "./employee/EmployeeCard";
             "locationId": 1,
             "customerId": 3,
             "id": 5
+          },{
+            "name": "Kenai",
+            "breed": "Shiba-inu",
+            "locationId": 1,
+            "customerId": 3,
+            "id": 6
           }
         ]
       
@@ -78,6 +86,7 @@ import "./employee/EmployeeCard";
               <div>Visit Us at the {kennel.locations[0].name} Location</div>
               <div>{kennel.locations[0].address}</div>
             </address>
+            <PropsAndState yourName={"calvin"} />
             <article className="animals">
               {
                 animals.map(animal => {
@@ -87,22 +96,38 @@ import "./employee/EmployeeCard";
             </article>
       
             <AnimalCard animal={koopa} />
+
+            
           </>
         )
       }
 
-export const Customer = () => (
+export const Customer = () => {
+    // creating a new variable that contains an obj
+    const customer = {
+        name: "Hannah Hall",
+        // name is a key value pair
+        locations: [
+            {
+                state:"Tennessee",
+                city:"Nashville"
+            }
+        ]
 
-      
+    }
+    // console.log("customer object", customer.locations)
+    return (
+
     <>
-        
-        <h2>Customers</h2>
+        <h2>{customer.name}</h2>
+        <small>I love shopping here!</small>
+        <address>In {customer.locations[0].city}</address>
         <article className="customers">
             <CustomerCard />
         </article>
     </>
-)
-
+    )
+ }
 export const Employee = () => (
     <>
         
@@ -112,3 +137,4 @@ export const Employee = () => (
         </article>
     </>
 )
+
