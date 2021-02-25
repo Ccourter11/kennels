@@ -3,7 +3,8 @@ import ReactDOM from "react-dom"
 import { Kennel } from "./components/Kennel"
 import { reportWebVitals } from "./reportWebVitals"
 import { CustomerCard } from "./components/customer/CustomerCard"
-import { EmployeeCard } from "./components/employee/EmployeeCard";
+import { EmployeeCard } from "./components/employee/EmployeeCard"
+
 
 ReactDOM.render(
   <React.StrictMode>
