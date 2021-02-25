@@ -1,7 +1,7 @@
 // My Main App Component
 
 
-import React from "react"
+import React, { useState } from "react"
 import { AnimalCard } from "./animal/AnimalCard"
 import "./animal/Animal.css"
 import { CustomerCard } from "./customer/CustomerCard";
@@ -16,59 +16,77 @@ import "./PropsAndState"
 
 
     export const Kennel = () => {
-        const kennel = {
-          name: "Nashville Kennels: #1 in Davidson County",
-          locations: [
-            {
-              name: "Nashville North",
-              address: "500 Puppy Way"
-            }
-          ]
-        }
-      
-        const animals = [
+
+       // let counter = 1
+      let [counter, setCounter] = useState(1) 
+      // Using useState to keep track of any change during the variable counter
+
+      const [kennel, setKennel] = useState({
+        name: "Nashville Kennels: #1 in Davidson County",
+        locations: [
           {
-            "name": "Doodles",
-            "breed": "Poodle",
-            "locationId": 1,
-            "customerId": 3,
-            "id": 1
-          },
-          {
-            "id": 2,
-            "name": "Kelvin",
-            "breed": "Bulldog",
-            "customerId": 3,
-            "locationId": 2,
-          },
-          {
-            "name": "Midnight",
-            "breed": "Bulldog",
-            "locationId": 2,
-            "customerId": 3,
-            "id": 3
-          },
-          {
-            "name": "Chowder",
-            "breed": "Pomeranian",
-            "locationId": 1,
-            "customerId": 3,
-            "id": 4
-          },
-          {
-            "name": "Nimbus",
-            "breed": "Bulldog",
-            "locationId": 1,
-            "customerId": 3,
-            "id": 5
-          },{
-            "name": "Kenai",
-            "breed": "Shiba-inu",
-            "locationId": 1,
-            "customerId": 3,
-            "id": 6
+            name: "Nashville North",
+            address: "500 Puppy Way"
           }
         ]
+      })
+      
+
+      const [animals, setAnimals] = useState([
+        {
+          "name": "Doodles",
+          "breed": "Poodle",
+          "locationId": 1,
+          "customerId": 3,
+          "id": 1
+        },
+        {
+          "id": 2,
+          "name": "Kelvin",
+          "breed": "Bulldog",
+          "customerId": 3,
+          "locationId": 2
+        },
+        {
+          "name": "Midnight",
+          "breed": "Bulldog",
+          "locationId": 2,
+          "customerId": 3,
+          "id": 3
+        },
+        {
+          "name": "Chowder",
+          "breed": "Pomeranian",
+          "locationId": 1,
+          "customerId": 3,
+          "id": 4
+        },
+        {
+          "name": "Nimbus",
+          "breed": "Bulldog",
+          "locationId": 1,
+          "customerId": 3,
+          "id": 5
+        },{
+          "name": "Kenai",
+          "breed": "Shiba-inu",
+          "locationId": 1,
+          "customerId": 3,
+          "id": 6
+        }
+      ])
+    
+      const incrementCounter = () => {
+        
+        const newCounterValue = ++counter
+    
+        // DO NOT DO: counter = newCounterValue
+        setCounter(newCounterValue)
+        // setting state here to newCounterValue
+        console.log("counter", counter)
+        console.log("setCounter", setCounter)
+      }
+    
       
         const koopa = {
           name: "Koopa",
@@ -87,6 +105,8 @@ import "./PropsAndState"
               <div>{kennel.locations[0].address}</div>
             </address>
             <PropsAndState yourName={"calvin"} />
+            <div>Currently helping #{counter}</div>
+        <button onClick={incrementCounter}>Take a number</button>
             <article className="animals">
               {
                 animals.map(animal => {
