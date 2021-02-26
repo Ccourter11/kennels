@@ -17,11 +17,17 @@ export const AnimalProvider = (props) => {
 
  
 
-  const getAnimals = () => {
-    return fetch("http://localhost:8088/animals")
-      .then(response => response.json())
-      .then(animalsData => setAnimals(animalsData))
-  }
+  // const getAnimals = () => {
+  //   return fetch("http://localhost:8088/animals")
+  //     .then(response => response.json())
+  //     .then(animalsData => setAnimals(animalsData))
+  // }
+
+   const getAnimals = () => {
+        return fetch("http://localhost:8088/animals?_expand=location")
+        .then(res => res.json())
+        .then(setAnimals)
+    }
 
   /*
       You return a context provider which has the
@@ -31,9 +37,8 @@ export const AnimalProvider = (props) => {
   */
   return (
     <AnimalContext.Provider value={{
-      animals: animals, 
-      getAnimals: getAnimals
-      // animals, getAnimals
+     
+      animals, getAnimals
     }}>
       {props.children}
     </AnimalContext.Provider>

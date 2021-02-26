@@ -4,6 +4,7 @@ import { Home } from "./Home"
 import { AnimalProvider } from "./animal/AnimalProvider"
 import { AnimalList } from "./animal/AnimalList"
 
+
 export const ApplicationViews = () => {
     return (
         <>
