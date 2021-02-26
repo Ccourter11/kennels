@@ -13,7 +13,7 @@ export const AnimalList = () => {
 
     // The useEffect hook allows the component to reach out into the world for anything that cannot be handled during render. In this case, it is the API call for the animals.
   useEffect(() => {
-    console.log("Fetching animals data from API")
+    console.log("AnimalList: useEffect - getAnimals")
     getAnimals()
   }, [])
 
@@ -22,6 +22,7 @@ export const AnimalList = () => {
       <h4>Animals</h4>
       <article className="animals">
           {/* Use the .map() array method to iterate the array of animals and generate HTML for each one by invoking the AnimalCard component function. */}
+          {console.log("AnimalList: Render", animals)}
         {
           animals.map(animalObject => {
             return <AnimalCard key={animalObject.id} animal={animalObject} />
