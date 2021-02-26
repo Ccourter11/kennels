@@ -28,9 +28,15 @@
             "name": "Kenai",
              "breed": "Shiba-inu",
             "locationId": 1,
-            "customerId": 3,
+            "customerId": 5,
             "id": 6
-                    }
+        },{
+            "name": "Dreamer",
+             "breed": "weiner dawg",
+            "locationId": 1,
+            "customerId": 6,
+            "id": 7
+        }
     ],
     "customers": [
         {
@@ -49,9 +55,35 @@
             "id": 4,
             "name": "Michael Jackson",
             "address": "222 Never Never Land Dr"
+        },{
+            "id": 5,
+            "name": "Ace Ventura",
+            "address": "Down Yonder 111 Blvd"
+        },{
+            "id": 6,
+            "name": "Jim Jones",
+            "address": "444 Spurs Rd"
         }
     ],
-    "employees": [],
+    "employees": [
+        {
+            "id": 1,
+            "name": "Jeremy Bakker",
+            "locationId": 2
+        },{
+            "id": 2,
+            "name": "Calvin Johnson",
+            "locationId": 2 
+        }, {
+            "id": 3,
+            "name": "Ben Stiller",
+            "locationId": 1
+        }, {
+            "id": 1,
+            "name": "Matt Damon",
+            "locationId": 1
+        }
+    ],
     "locations": [
         {
             "id": 1,
