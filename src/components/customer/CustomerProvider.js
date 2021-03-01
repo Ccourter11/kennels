@@ -1,11 +1,13 @@
 import React, { useState, createContext } from "react"
 
 // The context is imported and used by individual components that need data
-export const CustomerContext = createContext()
+export const CustomerProvider = createContext()
 
 // This component establishes what data can be used.
 export const CustomerProvider = (props) => {
+
     const [customers, setCustomers] = useState([])
+    // use the useState() hook to define a variable that holds the state of the component, and a function that updates it
 
     const getCustomers = () => {
         return fetch("http://localhost:8088/customers")
@@ -13,17 +15,8 @@ export const CustomerProvider = (props) => {
         .then(setCustomers)
     }
 
-    const addCustomer = customerObj => {
-        return fetch("http://localhost:8088/customers", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(customerObj)
-        })
-        .then(getCustomers)
-    }
 
+   
     /*
         You return a context provider which has the
         `Customers` state, `getCustomers` function,
@@ -32,7 +25,7 @@ export const CustomerProvider = (props) => {
     */
     return (
         <CustomerContext.Provider value={{
-            customers, getCustomers, addCustomer
+            customers, getCustomers
         }}>
             {props.children}
         </CustomerContext.Provider>
