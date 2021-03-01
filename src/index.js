@@ -2,15 +2,14 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { Kennel } from "./components/Kennel"
 import { reportWebVitals } from "./reportWebVitals"
-import { CustomerCard } from "./components/customer/CustomerCard"
-import { EmployeeCard } from "./components/employee/EmployeeCard"
-
+import './index.css';
+import { BrowserRouter as Router } from "react-router-dom"
 
 ReactDOM.render(
   <React.StrictMode>
+   <Router >
     <Kennel />
-    <CustomerCard />
-    <EmployeeCard />
+   </Router > 
   </React.StrictMode>,
   document.getElementById('root')
 );
