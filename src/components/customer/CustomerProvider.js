@@ -1,7 +1,7 @@
 import React, { useState, createContext } from "react"
 
 // The context is imported and used by individual components that need data
-export const CustomerProvider = createContext()
+export const CustomerContext = createContext()
 
 // This component establishes what data can be used.
 export const CustomerProvider = (props) => {
@@ -16,7 +16,6 @@ export const CustomerProvider = (props) => {
     }
 
 
-   
     /*
         You return a context provider which has the
         `Customers` state, `getCustomers` function,
