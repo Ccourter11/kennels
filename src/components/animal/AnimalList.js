@@ -6,7 +6,6 @@ import "./Animal.css"
 import { AnimalContext } from "./AnimalProvider"
 import { CustomerContext } from "../customer/CustomerProvider"
 import { LocationContext } from "../location/LocationProvider"
-
 import { useHistory } from "react-router-dom" // import from libraries before your local modules
 
 export const AnimalList = () => {
