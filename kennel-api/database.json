@@ -86,21 +86,25 @@
     {
       "id": 1,
       "name": "Jeremy Bakker",
+      "position": "Manager",
       "locationId": 2
     },
     {
       "id": 2,
       "name": "Calvin Johnson",
+      "position": "Receptionist",
       "locationId": 2
     },
     {
       "id": 3,
       "name": "Ben Stiller",
+      "position": "Accountant",
       "locationId": 1
     },
     {
       "id": 1,
       "name": "Matt Damon",
+      "position": "Book Keeper",
       "locationId": 1
     }
   ],
