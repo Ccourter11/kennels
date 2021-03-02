@@ -14,6 +14,16 @@ export const AnimalProvider = (props) => {
   // Next, you will use the useState() hook to define a variable that holds the state of the component, and a function that updates it
   const [animals, setAnimals] = useState([])
 
+//Here's what the State hook is doing for you with a single line of code.
+//  Define the variable which will hold the data.
+//let animals = []
+// Define the function to be used to modify that state.
+//const setAnimals = animalsData => {
+//     if (animalsData !== null && Array.isArray(animalsData)) {
+//         animals = animalsData
+//     }
+// }
+
   const getAnimals = () => {
     return fetch("http://localhost:8088/animals")
       .then(response => response.json())
