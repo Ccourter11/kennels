@@ -2,7 +2,7 @@ import React from "react"
 import "./Animal.css"
 
 
-export const AnimalCard = ({animalProps}) => (
+export const AnimalCard = ({animalProps, owner, location}) => (
     <section className="animal">
       {/* {console.log(animalProps)} */}
       <h3 className="animal__name">{animalProps.name}</h3>

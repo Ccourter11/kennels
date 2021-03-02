@@ -29,6 +29,8 @@ export const ApplicationViews = () => {
         </LocationProvider>
       </CustomerProvider>
 
+      {/* Now the AnimalList component can access data from all three data providers in order to access the name property on both the customer and the location */}
+
       <LocationProvider>
         <Route path="/locations">
           <LocationList />
