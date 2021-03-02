@@ -10,6 +10,7 @@ import { LocationList } from "./location/LocationList"
 import { CustomerList } from "./customer/CustomerList"
 import { EmployeeList } from "./employee/EmployeeList"
 import { AnimalForm } from "./animal/AnimalForm"
+import { EmployeeForm } from "./employee/EmployeeForm"
 
 export const ApplicationViews = () => {
   return (
@@ -36,6 +37,19 @@ export const ApplicationViews = () => {
 
       {/* Now the AnimalList component can access data from all three data providers in order to access the name property on both the customer and the location */}
 
+      <EmployeeProvider>
+            <LocationProvider>
+              <Route exact path="/employees">
+                <EmployeeList />
+              </Route>
+
+              <Route exact path="/employees/create">
+                <EmployeeForm />
+              </Route>
+            </LocationProvider>
+            </EmployeeProvider>
+
+
       <LocationProvider>
         <Route path="/locations">
           <LocationList />
@@ -48,11 +62,7 @@ export const ApplicationViews = () => {
         </Route>
       </CustomerProvider>
 
-      <EmployeeProvider>
-        <Route path="/employees">
-          <EmployeeList />
-        </Route>
-      </EmployeeProvider>
+      
     </>
   )
 }
