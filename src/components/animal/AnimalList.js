@@ -7,16 +7,20 @@ import { AnimalContext } from "./AnimalProvider"
 import { CustomerContext } from "../customer/CustomerProvider"
 import { LocationContext } from "../location/LocationProvider"
 
+import { useHistory } from "react-router-dom" // import from libraries before your local modules
+
 export const AnimalList = () => {
   // This state changes when `getAnimals()` is invoked below
   const { animals, getAnimals } = useContext(AnimalContext)
   const { customers, getCustomers } = useContext(CustomerContext)
   const { locations, getLocations } = useContext(LocationContext)
 
+  const history = useHistory()
+
 
    // The useEffect hook allows the component to reach out into the world for anything that cannot be handled during render. In this case, it is the API call for the animals.
   useEffect(() => {
-    console.log("AnimalList: useEffect - getAnimals")
+    // console.log("AnimalList: useEffect - getAnimals")
     getLocations()
     .then(getCustomers)
     .then(getAnimals)
@@ -24,7 +28,11 @@ export const AnimalList = () => {
 
   return (
     <>
-      <h4>Animals</h4>
+    <div className="animals">
+      <h2>Animals</h2>
+        <button onClick={() => {history.push("/animals/create")}}>
+          Add Animal
+        </button>
       <article className="animals">
          {/* Use the .map() array method to iterate the array of animals and generate HTML for each one by invoking the AnimalCard component function. */}
         {
@@ -34,8 +42,10 @@ export const AnimalList = () => {
             return <AnimalCard key={animalObject.id} animalProps={animalObject} owner={owner} location={location} />
           })
         }
+        
         {/* even though it looks like you are specifying an HTML component, you are actually invoking a function. Also, the key and animal arguments look like HTML attributes here, but they actually become properties on an object that gets passed as an argument */}
       </article>
+      </div>
     </>
   )
 }

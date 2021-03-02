@@ -9,6 +9,7 @@ import { AnimalList } from "./animal/AnimalList"
 import { LocationList } from "./location/LocationList"
 import { CustomerList } from "./customer/CustomerList"
 import { EmployeeList } from "./employee/EmployeeList"
+import { AnimalForm } from "./animal/AnimalForm"
 
 export const ApplicationViews = () => {
   return (
@@ -19,15 +20,19 @@ export const ApplicationViews = () => {
       </Route>
 
       {/* Render the animal list when http://localhost:3000/animals */}
-      <CustomerProvider>
-        <LocationProvider>
-          <AnimalProvider>
-            <Route path="/animals">
-              <AnimalList />
-            </Route>
-          </AnimalProvider>
-        </LocationProvider>
-      </CustomerProvider>
+      <AnimalProvider>
+                <LocationProvider>
+                    <CustomerProvider>
+                        <Route path="/animals">
+                            <AnimalList />
+                        </Route>
+
+                        <Route path="/animals/create">
+                            <AnimalForm />
+                        </Route>
+                    </CustomerProvider>
+                </LocationProvider>
+            </AnimalProvider>
 
       {/* Now the AnimalList component can access data from all three data providers in order to access the name property on both the customer and the location */}
 
