@@ -17,6 +17,7 @@ export const AnimalForm = () => {
     */
 
     const [animal, setAnimal] = useState({
+      // this is what lives in useState
       name: "",
       breed: "",
       locationId: 0,
@@ -31,6 +32,7 @@ export const AnimalForm = () => {
     */
     useEffect(() => {
       getCustomers().then(getLocations)
+      // get customers and locations data
     }, [])
 
     //when a field changes, update state. The return will re-render and display based on the values in state
