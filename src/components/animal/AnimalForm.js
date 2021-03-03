@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 export const AnimalForm = () => {
     const { addAnimal } = useContext(AnimalContext)
+    // once you have the context, you have access to the state variables, and to get the actual data you need you need api calls to get the data ie : useEffect
     const { locations, getLocations } = useContext(LocationContext)
     const { customers, getCustomers } = useContext(CustomerContext)
 
@@ -90,9 +91,12 @@ export const AnimalForm = () => {
               <div className="form-group">
                   <label htmlFor="location">Assign to location: </label>
                   <select value={animal.locationId} name="locationId" id="locationId" onChange={handleControlledInputChange} className="form-control" >
+                    {/* option tag indicates a drop down */}
                       <option value="0">Select a location</option>
+                      {/* to get the data for drop down we need the context */}
                       {locations.map(l => (
                           <option key={l.id} value={l.id}>
+                            {/* because this is react, im looping over something and creating a jsx element, i do need a key, a key needs to be a unquie identifier bc we already have an id that acts like a unique identifier, we use the id as the key. the value of of option tag is going to beid bc thats what we want to capture and then what the user sees is going to be the name  */}
                               {l.name}
                           </option>
                       ))}
