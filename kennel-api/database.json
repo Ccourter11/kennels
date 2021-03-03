@@ -1,13 +1,6 @@
 {
   "animals": [
     {
-      "id": 1,
-      "name": "Doodles",
-      "breed": "Poodle",
-      "customerId": 1,
-      "locationId": 2
-    },
-    {
       "id": 2,
       "name": "Harry",
       "breed": "Pug",
@@ -41,13 +34,6 @@
       "locationId": 1,
       "customerId": 6,
       "id": 7
-    },
-    {
-      "name": "kenai",
-      "breed": "shiba",
-      "locationId": 1,
-      "customerId": 2,
-      "id": 8
     },
     {
       "name": "Doge",
