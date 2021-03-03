@@ -10,6 +10,7 @@ export const EmployeeList = () => {
   const {locations, getLocations} = useContext(LocationContext)
 
   const history = useHistory()
+  // this useHistory() hook is from our routing package @ import { useHistory } from "react-router-dom"
 
   useEffect(() => {
     getLocations()
@@ -19,6 +20,9 @@ export const EmployeeList = () => {
   return (
   <div className="employees">
       <h2>Employees</h2>
+      {/* history.push changes the URL without the user taking any action */}
+      {/* every page you visit gets inserted into the useHistory array, so when you push to that array */}
+      {/* whatever item is at the end of the array, is the current URL, were taking the useHistory array and adding to it and that is the current page you will go to */}
       <button onClick={() => {history.push("employees/create")}}>
         Add Employee
       </button>
