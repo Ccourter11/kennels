@@ -5,7 +5,7 @@ import "./Location.css"
 
 
 export const LocationForm = () => {
-  const {saveLocations, updateLocation, getLocationById} = useContext(LocationContext)
+  const {saveLocation, updateLocation, getLocationById} = useContext(LocationContext)
 
 
   const [location, setLocation] = useState({
@@ -36,7 +36,7 @@ export const LocationForm = () => {
                       address: location.address})
       .then(()=> history.push(`/locations/detail/${location.id}`))
     }else{
-      saveLocations({
+      saveLocation({
         name: location.name,
         address: location.address
       })
