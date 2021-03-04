@@ -27,7 +27,16 @@ export const EmployeeProvider = (props) => {
         return fetch(`http://localhost:8088/employees/${id}?_expand=location`)
             .then(res => res.json())
     }
-
+    const saveEmployees = (employeeObj) => {
+        return fetch("http://localhost:8088/employees", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(employeeObj)
+        })
+          .then(getEmployees)
+      }
     /*
         You return a context provider which has the
         `Employees` state, `getEmployees` function,
@@ -36,7 +45,7 @@ export const EmployeeProvider = (props) => {
     */
     return (
         <EmployeeContext.Provider value={{
-            employees, getEmployees, addEmployee, getEmployeeById
+            employees, getEmployees, addEmployee, getEmployeeById, saveEmployees
         }}>
             {props.children}
         </EmployeeContext.Provider>

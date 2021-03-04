@@ -99,6 +99,11 @@
       "name": "Matt Damon",
       "position": "Book Keeper",
       "locationId": 1
+    },
+    {
+      "name": "Lil baba coco",
+      "locationId": 2,
+      "id": 5
     }
   ],
   "locations": [
