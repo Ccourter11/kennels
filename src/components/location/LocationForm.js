@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react"
 import { LocationContext } from "./LocationProvider"
 import { useHistory } from "react-router-dom"
+import "./Location.css"
+import { AnimalContext } from "../animal/AnimalProvider"
 
 export const LocationForm = () => {
   const {saveLocations} = useContext(LocationContext)
