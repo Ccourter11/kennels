@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { LocationContext } from "../location/LocationProvider"
 import { EmployeeContext } from "./EmployeeProvider"
+import "./Employee.css"
 
 export const EmployeeForm = () => {
   const {locations, getLocations} = useContext(LocationContext)
-  const {saveEmployees} = useContext(EmployeeContext)
+  const {updateEmployee, addEmployee, getEmployeeById} = useContext(EmployeeContext)
+  const [isLoading, setIsLoading] = useState(true)
+  const {employeeId} = useParams()
 
   const [employee, setEmployee] = useState({
     name: "",
@@ -16,6 +19,18 @@ export const EmployeeForm = () => {
 
   useEffect(() => {
     getLocations()
+    .then(()=>{
+      if(employeeId){
+        getEmployeeById(employeeId)
+        .then(employee => {
+          setEmployee(employee)
+          setIsLoading(false)
+        })
+        
+      }else{
+        setIsLoading(false)
+      }
+    })
   }, [])
 
   const handleControlledInputChange = (event) => {
@@ -34,15 +49,21 @@ export const EmployeeForm = () => {
 
   const handleClickSaveEmployee = (event) => {
     event.preventDefault()
+    employee.locationId = parseInt(employee.locationId)
 
-    const name = employee.name
-    const locationId = employee.locationId
-
-    if (locationId === 0){
-      alert("You must choose a location!")
+    if (employee.locationId === 0) {
+      window.alert("Please select a location")
     } else {
-      saveEmployees(employee)
-      .then(history.push("/employees"))
+      if(employeeId){
+        updateEmployee({name: employee.name,
+                        locationId: employee.locationId,
+                        id: employee.id})
+        .then(()=> history.push(`/employees/detail/${employee.id}`))
+      }else{
+        addEmployee({name: employee.name,
+                    locationId: employee.locationId})
+        .then(() => history.push("/employees"))
+      }
     }
   }
 
@@ -65,8 +86,10 @@ export const EmployeeForm = () => {
             ))}
           </select>
         </div>
-        <button className="btn" onClick={handleClickSaveEmployee}>
-          Save Employee
+        <button className="btn btn-primary"
+            disabled= {isLoading}
+            onClick={handleClickSaveEmployee}>
+            {employeeId ? "Edit Employee" : "Save Employee"}
         </button>
       </fieldset> 
     </form>
