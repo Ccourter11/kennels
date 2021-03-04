@@ -70,10 +70,9 @@
   ],
   "employees": [
     {
-      "id": 1,
       "name": "Jeremy Bakker",
-      "position": "Manager",
-      "locationId": 2
+      "locationId": 3,
+      "id": 1
     },
     {
       "name": "Calvin Courter",
@@ -115,7 +114,7 @@
       "address": "209 Emory Drive"
     },
     {
-      "name": "Jimmy Johns",
+      "name": "Jimmy Johns1",
       "id": 3,
       "address": "Denver Colorado"
     }
