@@ -1,18 +1,21 @@
-import React, { useContext, useState } from "react"
+import React, { useContext,useEffect, useState } from "react"
 import { LocationContext } from "./LocationProvider"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import "./Location.css"
-import { AnimalContext } from "../animal/AnimalProvider"
+
 
 export const LocationForm = () => {
-  const {saveLocations} = useContext(LocationContext)
+  const {saveLocations, updateLocation, getLocationById} = useContext(LocationContext)
 
-  const history = useHistory()
 
   const [location, setLocation] = useState({
     name: "",
     address: ""
   })
+
+  const history = useHistory()
+  const [isLoading, setIsLoading] = useState(true);
+  const {locationId} = useParams()
 
   const handleControlledInputChange = (event) => {
     let newLocation = {...location}
@@ -24,25 +27,57 @@ export const LocationForm = () => {
     setLocation(newLocation)
   }
 
-  const handleClickSaveLocation = (event) => {
-    saveLocations(location)
-    .then(history.push("/locations"))
-  }
 
-  return (
-    <form className="locationForm">
-      <h2 className="locationForm__title">Location Form</h2>
-      <fieldset className="form-group">
-        <label htmlFor="name">Name: </label>
-        <input type="text" id="name" onChange={handleControlledInputChange} autoFocus required placeholder="Location name..."></input>
+  const handleClickSaveLocation = () => {
+    setIsLoading(true)
+    if(locationId){
+      updateLocation({name: location.name,
+                      id: location.id,
+                      address: location.address})
+      .then(()=> history.push(`/locations/detail/${location.id}`))
+    }else{
+      saveLocations({
+        name: location.name,
+        address: location.address
+      })
+      .then(() => history.push("/locations"))
+    }
+    }
+  useEffect(()=>{
+    if(locationId){
+      getLocationById(locationId)
+      .then(location => {
+        setLocation(location)
+        setIsLoading(false)
+      })
+    }else{
+      setIsLoading(false)
+    }
+  },[])
+
+
+return (
+  <form className="locationForm">
+      <h2 className="locationForm__title">New Location</h2>
+      <fieldset>
+          <div className="form-group">
+              <label htmlFor="name">Location name:</label>
+              <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Location name" value={location.name}/>
+          </div>
       </fieldset>
-      <fieldset className="form-group">
-        <label htmlFor="address">Address: </label>
-        <input type="text" id="address" onChange={handleControlledInputChange} required placeholder="Location address..."></input>
+      <fieldset>
+          <div className="form-group">
+              <label htmlFor="location">Assign to location: </label>
+              <input type="text" id="address" onChange={handleControlledInputChange} required className="form-control" placeholder="Location address" value={location.address}/>
+          </div>
       </fieldset>
-      <button className="btn" onClick={handleClickSaveLocation}>
-        Save Location
+      <button className="btn btn-primary"
+        disabled={isLoading}
+        onClick={event =>{
+          event.preventDefault()
+          handleClickSaveLocation()}}>
+        {locationId ? "Edit Location" : "Save Location"}
       </button>
-    </form>
-  )
+  </form>
+)
 }

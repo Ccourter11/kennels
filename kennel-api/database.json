@@ -1,25 +1,18 @@
 {
   "animals": [
     {
-      "id": 2,
-      "name": "Harry",
-      "breed": "Husky",
-      "locationId": 2,
-      "customerId": 2
-    },
-    {
       "id": 3,
       "name": "Rusty",
       "breed": "Mutt",
-      "customerId": 3,
-      "locationId": 2
+      "locationId": 2,
+      "customerId": 3
     },
     {
       "id": 4,
       "name": "Paco",
       "breed": "Bird-Dog",
-      "customerId": 4,
-      "locationId": 2
+      "locationId": 2,
+      "customerId": 4
     },
     {
       "name": "Kenai",
@@ -83,10 +76,9 @@
       "locationId": 2
     },
     {
-      "id": 2,
-      "name": "Calvin Johnson",
-      "position": "Receptionist",
-      "locationId": 2
+      "name": "Calvin Courter",
+      "locationId": 1,
+      "id": 2
     },
     {
       "id": 3,
@@ -108,8 +100,8 @@
   ],
   "locations": [
     {
+      "name": "Nashville North West",
       "id": 1,
-      "name": "Nashville North",
       "address": "8422 Johnson Pike"
     },
     {
