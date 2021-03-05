@@ -13,6 +13,7 @@ export const AnimalProvider = (props) => {
 
   // Next, you will use the useState() hook to define a variable that holds the state of the component, and a function that updates it
   const [animals, setAnimals] = useState([])
+  const [searchTerms, setSearchTerms ] = useState("")
 
 //Here's what the State hook is doing for you with a single line of code.
 //  Define the variable which will hold the data.
@@ -71,7 +72,7 @@ const updateAnimal = animal => {
   return (
     <AnimalContext.Provider value={{
       
-      animals, getAnimals, addAnimal, getAnimalById, releaseAnimal, updateAnimal
+      animals, getAnimals, addAnimal, getAnimalById, releaseAnimal, updateAnimal, searchTerms, setSearchTerms
     }}>
       {props.children}
     </AnimalContext.Provider>

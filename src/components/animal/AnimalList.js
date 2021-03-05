@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react"
+import React, { useEffect, useContext, useState } from "react"
 import { AnimalCard } from "./AnimalCard"
 import "./Animal.css"
 // The useContext hook allows you to use data structures and functions that a parent provider component exposes.
@@ -10,10 +10,12 @@ import { useHistory } from "react-router-dom" // import from libraries before yo
 
 export const AnimalList = () => {
   // This state changes when `getAnimals()` is invoked below
-  const { animals, getAnimals } = useContext(AnimalContext)
+  const { animals, getAnimals, searchTerms } = useContext(AnimalContext)
   const { customers, getCustomers } = useContext(CustomerContext)
   const { locations, getLocations } = useContext(LocationContext)
 
+
+  const [filtered, setFiltered] = useState([])
   const history = useHistory()
 
 
@@ -25,29 +27,37 @@ export const AnimalList = () => {
     .then(getAnimals)
   }, [])
 
+  // useEffect dependency array with dependencies - will run if dependency changes (state)
+  // searchTerms will cause a change
+  useEffect(() => {
+    if (searchTerms !== "") {
+      // If the search field is not blank, display matching animals
+      const subset = animals.filter(animal => animal.name.toLowerCase().includes(searchTerms.toLowerCase()))
+      setFiltered(subset)
+    } else {
+      // If the search field is blank, display all animals
+      setFiltered(animals)
+    }
+  }, [searchTerms, animals])
+
   return (
     <>
-    <div className="animals">
-      <h2>Animals</h2>
-        <button onClick={() => {history.push("/animals/create")}}>
-          Add Animal
-        </button>
+      {/* {console.log("Data for AnimalList", animals, customers, locations)} */}
+      <h4>Animals</h4>
+      <button onClick={() => { history.push("/animals/create") }}>Add Animal</button>
       <article className="animals">
-         {/* Use the .map() array method to iterate the array of animals and generate HTML for each one by invoking the AnimalCard component function. */}
         {
-          animals.map(animalObject => {
+          filtered.map(animalObject => {
             const owner = customers.find(c => c.id === animalObject.customerId)
             const location = locations.find(l => l.id === animalObject.locationId)
             return <AnimalCard key={animalObject.id} animalProps={animalObject} owner={owner} location={location} />
           })
         }
-        
-        {/* even though it looks like you are specifying an HTML component, you are actually invoking a function. Also, the key and animal arguments look like HTML attributes here, but they actually become properties on an object that gets passed as an argument */}
       </article>
-      </div>
     </>
   )
 }
+
 
 
 // vanilla JS code.
